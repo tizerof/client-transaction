@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - "../client_transaction_db:/var/lib/postgresql/data"
+
+  redis:
+    image: redis:6
+    # TODO password
+
+  docker-hoster:
+    image: dvdarias/docker-hoster
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
+      - "/etc/hosts:/tmp/hosts"
